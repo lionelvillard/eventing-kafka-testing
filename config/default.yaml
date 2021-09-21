@@ -1,0 +1,15 @@
+# dryRun: true
+
+logging:
+  # Enables low level command output
+  showCommands: false
+
+# Disable tearing down the testing environment
+#noTearDown: true
+
+kafka:
+  bootstrapServer: my-cluster-kafka-bootstrap.kafka:9092
+  namespace: kafka
+
+strimzi:
+  cluster: my-cluster

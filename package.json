@@ -1,0 +1,30 @@
+{
+  "name": "eventing-kafka-testing",
+  "version": "1.0.0",
+  "description": "Knative Kafka Testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/kafkasource/*.js",
+    "testlib": "mocha test/resources/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lionelvillard/eventing-kafka-testing.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lionelvillard/eventing-kafka-testing/issues"
+  },
+  "homepage": "https://github.com/lionelvillard/eventing-kafka-testing#readme",
+  "dependencies": {
+    "config": "^3.3.6",
+    "js-yaml": "^4.1.0",
+    "mocha": "^9.1.1",
+    "mocha-logger": "^1.0.7",
+    "retry-assert": "^1.0.0",
+    "tmp-promise": "^3.0.2",
+    "uuid": "^8.3.2"
+  },
+  "type": "module"
+}
