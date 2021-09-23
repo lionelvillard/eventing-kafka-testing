@@ -2,7 +2,7 @@
 
 logging:
   # Enables low level command output
-  showCommands: false
+  showCommands: true
 
 # Disable tearing down the testing environment
 #noTearDown: true

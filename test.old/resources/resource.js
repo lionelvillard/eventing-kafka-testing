@@ -16,6 +16,7 @@ export default class Resource {
 
   bind(context) {
     this._context = context
+    this.metadata.namespace = this._context.namespace
     return this
   }
 
@@ -31,10 +32,6 @@ export default class Resource {
         name: this.metadata.name,
       }
     }
-  }
-
-  clusterScoped() {
-    return false
   }
 
   // Apply this resource to the given context

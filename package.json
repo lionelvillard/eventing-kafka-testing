@@ -4,8 +4,10 @@
   "description": "Knative Kafka Testing",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/kafkasource/*.js",
-    "testlib": "mocha test/resources/*.spec.js"
+    "compile": "tsc",
+    "test": "mocha built/test/**/*.js",
+    "testlib": "mocha --extension .spec.js built/src",
+    "clean": ""
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,11 @@
   },
   "homepage": "https://github.com/lionelvillard/eventing-kafka-testing#readme",
   "dependencies": {
+    "@types/chai": "^4.2.22",
+    "@types/config": "^0.0.39",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.9.6",
+    "chai": "^4.3.4",
     "config": "^3.3.6",
     "js-yaml": "^4.1.0",
     "mocha": "^9.1.1",

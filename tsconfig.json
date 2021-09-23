@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "outDir": "./built",
+    "allowJs": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "inlineSourceMap": true,
+    "types": [
+      "node"
+    ],
+    "esModuleInterop": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "src/types"
+    ],
+    "rootDirs": ["src", "test"]
+  },
+  "include": [
+    "./src/**/*",
+    "test/**/*"
+  ]
+}

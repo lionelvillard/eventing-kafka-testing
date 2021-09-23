@@ -1,2 +1,2 @@
 timeout: 60000
-
+recursive: true
