@@ -1,10 +1,10 @@
 import assert from 'assert'
-import makeTopic  from './kafkatopic.js'
+import { KafkaTopic } from './kafkatopic.js'
 
 describe('Kafka topic resource', () => {
 
   it('should generate proper YAML', function () {
-    let svc = makeTopic('atopic')
+    let svc = new KafkaTopic('atopic')
     let yaml = svc.asYAML()
 
     assert.deepEqual(yaml, `apiVersion: kafka.strimzi.io/v1beta1

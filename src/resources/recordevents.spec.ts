@@ -1,12 +1,13 @@
 import assert from 'assert'
-import makeRecorder from './recordevents.js'
+import { expect } from 'chai'
+import { EventRecorder } from './recordevents.js'
 
 describe('record events resource', () => {
 
   it('should generate proper YAML', function () {
-    let recorder = makeRecorder('arecorder')
-    recorder.pod().metadata.labels = { e2etest: 'f317a857-6e87-4d78-94b8-ef78e79938d7' }
-    recorder.svc().spec.selector = { e2etest: 'f317a857-6e87-4d78-94b8-ef78e79938d7' }
+    let recorder = new EventRecorder('arecorder')
+    recorder.pod.metadata.labels = { e2etest: 'f317a857-6e87-4d78-94b8-ef78e79938d7' }
+    recorder.service.spec.selector = { e2etest: 'f317a857-6e87-4d78-94b8-ef78e79938d7' }
 
     let yaml = recorder.asYAML()
 
@@ -25,6 +26,11 @@ spec:
           value: ''
         - name: EVENT_LOGS
           value: ''
+        - name: SYSTEM_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+  restartPolicy: Never
 ---
 apiVersion: v1
 kind: Service
@@ -44,9 +50,9 @@ spec:
 
 
   it('should add receiver and sender generators', function () {
-    let recorder = makeRecorder('arecorder', { receiver: { enabled: true } })
-    recorder.pod().metadata.labels = { e2etest: 'f317a857-6e87-4d78-94b8-ef78e79938d7' }
-    recorder.svc().spec.selector = { e2etest: 'f317a857-6e87-4d78-94b8-ef78e79938d7' }
+    let recorder = new EventRecorder('arecorder', { receiver: { enabled: true } })
+    recorder.pod.metadata.labels = { e2etest: 'f317a857-6e87-4d78-94b8-ef78e79938d7' }
+    recorder.service.spec.selector = { e2etest: 'f317a857-6e87-4d78-94b8-ef78e79938d7' }
 
 
     let yaml = recorder.asYAML()
@@ -66,6 +72,11 @@ spec:
           value: receiver
         - name: EVENT_LOGS
           value: ''
+        - name: SYSTEM_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+  restartPolicy: Never
 ---
 apiVersion: v1
 kind: Service

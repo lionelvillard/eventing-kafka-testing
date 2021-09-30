@@ -1,9 +1,5 @@
 import Resource from './resource.js'
-import type { IDestination } from './resource.js'
-
-export default function make(name, bootstrapServer, topic, sink) {
-  return new KafkaSource(name, bootstrapServer, topic, sink)
-}
+import type { IDestination } from './types.js'
 
 interface ISpec {
   bootstrapServers: string[]
@@ -11,7 +7,7 @@ interface ISpec {
   sink: IDestination
 }
 
-class KafkaSource extends Resource {
+export class KafkaSource extends Resource {
   spec: ISpec
 
   constructor(name, bootstrapServer, topic, sink) {

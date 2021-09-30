@@ -1,10 +1,10 @@
 import assert from 'assert'
-import { make as makePod } from './pod.js'
+import { Pod } from './pod.js'
 
 describe('pod resource', () => {
 
   it('should generate proper YAML', function () {
-    let pod = makePod('apod', 'animage')
+    let pod = new Pod('apod', 'animage')
     pod.spec.containers[0].env = [
       { name: 'key1', value: 'value1' },
       { name: 'key2', 'value': 'value2' }
@@ -35,8 +35,8 @@ spec:
   })
 
   it('should add environment var to first container', function () {
-    let pod = makePod('apod', 'animage')
-    pod.setEnvVar(0, 'key1', 'value1')
+    let pod = new Pod('apod', 'animage')
+    pod.setEnvVarValue(0, 'key1', 'value1')
     let yaml = pod.asYAML()
 
     assert.deepEqual(yaml, `apiVersion: v1
@@ -54,9 +54,9 @@ spec:
   })
 
   it('should set environment var value to first container', function () {
-    let pod = makePod('apod', 'animage')
-    pod.setEnvVar(0, 'key1', 'value1')
-    pod.setEnvVar(0, 'key1', 'value2')
+    let pod = new Pod('apod', 'animage')
+    pod.setEnvVarValue(0, 'key1', 'value1')
+    pod.setEnvVarValue(0, 'key1', 'value2')
 
     let yaml = pod.asYAML()
 

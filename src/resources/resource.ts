@@ -1,28 +1,9 @@
 import retry from 'retry-assert'
 import mlog from 'mocha-logger'
 import { dump } from 'js-yaml'
-import { Context} from '../context.js'
+import { Context } from '../context.js'
+import type { IMetadata } from './types.js'
 
-export type { IMetadata, IDestination, IReference, SelectorType, LabelType }
-
-type LabelType = { [key: string]: string }
-type SelectorType = { [key: string]: string }
-
-interface IMetadata {
-  name: string
-  namespace: string
-  labels: LabelType
-}
-
-interface IDestination {
-  ref: IReference
-}
-
-interface IReference {
-  apiVersion: string
-  kind: string
-  name: string
-}
 
 // A Kubernetes resource.
 export default class Resource {

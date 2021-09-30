@@ -1,11 +1,14 @@
 # dryRun: true
 
 logging:
-  # Enables low level command output
+  # Enable/Disable low level command output
   showCommands: true
 
-# Disable tearing down the testing environment
-#noTearDown: true
+  # Enable/Disable Event recorder  output
+  showEvents: false
+
+# Enable/Disable tearing down the testing environment
+noTearDown: false
 
 kafka:
   bootstrapServer: my-cluster-kafka-bootstrap.kafka:9092

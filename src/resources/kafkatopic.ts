@@ -2,16 +2,12 @@ import Resource from './resource.js'
 import config from 'config'
 import { IKafkaConfig } from '../types.js'
 
-export default function make(name) {
-  return new Topic(name)
-}
-
 interface ISpec {
   partitions: number,
   replicas: number
 }
 
-class Topic extends Resource {
+export class KafkaTopic extends Resource {
 
   spec: ISpec
 

@@ -1,29 +1,24 @@
 import retry from 'retry-assert'
 import Resource from './resource.js'
 
-type ResourceMap = {
-  [key: string]: Resource
-}
-
 // A list of Kubernetes resources
-export default class ResourceList {
-
-  resources: ResourceMap
+export default abstract class ResourceList {
 
   constructor() {
-    this.resources = {}
   }
 
+  abstract resources(): Resource[]
+
   bind(context) {
-    for (let [_, r] of Object.entries(this.resources)) {
+    for (let [_, r] of Object.entries(this.resources())) {
       r.bind(context)
     }
     return this
   }
 
-  asYAML() {
+  asYAML(): string {
     let yaml = ''
-    for (let [_, r] of Object.entries(this.resources)) {
+    for (let [_, r] of Object.entries(this.resources())) {
       yaml += r.asYAML()
       yaml += `---\n`
     }
@@ -32,14 +27,14 @@ export default class ResourceList {
 
   // Apply all resources to the bound context
   async apply() {
-    for (let [_, r] of Object.entries(this.resources)) {
+    for (let [_, r] of Object.entries(this.resources())) {
       await r.apply()
     }
   }
 
   // Returns true when all resources are ready
-  async isReady() {
-    for (let [_, r] of Object.entries(this.resources)) {
+  async isReady(): Promise<boolean> {
+    for (let [_, r] of Object.entries(this.resources())) {
       if (!await r.isReady()) {
         return false
       }

@@ -2,9 +2,13 @@ import { makeK8sName } from './naming.js'
 import * as k from './kubectl.js'
 import config from 'config'
 import mlog from 'mocha-logger'
+import { Watcher } from './watcher.js'
 
 export class Context {
   namespace: string
+
+  // Active watches
+  watches: Record<string, Watcher>
 
   kubectl = {
     outer: this,
@@ -14,11 +18,21 @@ export class Context {
 
   constructor(namespace) {
     this.namespace = namespace
+    this.watches = {}
   }
 
   tearDown() {
+    Object.keys(this.watches).forEach(key => this.watches[key].stop())
+
     if (!config.has('noTearDown') || !config.get('noTearDown'))
       k.deleteNamespace(this.namespace)
+  }
+
+  watch(resource: string, listener) {
+    if (!this.watches[resource])
+      this.watches[resource] = new Watcher(this)
+
+    this.watches[resource].addListener('data', listener)
   }
 
 }

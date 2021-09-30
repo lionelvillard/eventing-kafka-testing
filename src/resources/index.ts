@@ -1,15 +1,9 @@
-import makeKafkasource  from './kafkasource.js'
-import makeKafkaTopic from './kafkatopic.js'
-import makeRecordEvents from './recordevents.js'
-
-export const kafkatopic = {
-  make: makeKafkaTopic
-}
-
-export const kafkasource = {
-  make: makeKafkasource
-}
-
-export const recordevents = {
-  make: makeRecordEvents
-}
+export * from './configmap.js'
+export * from './kafkasource.js'
+export * from './kafkatopic.js'
+export * from './recordevents.js'
+export * from './kcat.js'
+export * from './role.js'
+export * from './rolebinding.js'
+export * from './service.js'
+export * from './serviceaccount.js'

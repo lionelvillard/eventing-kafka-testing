@@ -6,6 +6,7 @@ interface IConfig {
 
 interface ILoggingConfig {
   showCommands?: boolean
+  showEvents?: boolean
 }
 
 interface IKafkaConfig {

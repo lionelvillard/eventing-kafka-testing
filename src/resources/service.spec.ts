@@ -1,10 +1,10 @@
 import assert from 'assert'
-import { make as makeService } from './service.js'
+import { Service } from './service.js'
 
 describe('service resource', () => {
 
   it('should generate proper YAML', function () {
-    let svc = makeService('aservice')
+    let svc = new Service('aservice')
     svc.spec.selector = { 'key1': 'value1', 'key2' : 'value2' }
     let yaml = svc.asYAML()
 

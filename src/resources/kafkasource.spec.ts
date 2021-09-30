@@ -1,5 +1,5 @@
 import assert from 'assert'
-import makeKafkaSource from './kafkasource.js'
+import { KafkaSource } from './kafkasource.js'
 
 describe('Kafka source resource', () => {
 
@@ -11,7 +11,7 @@ describe('Kafka source resource', () => {
         name: 'dest',
       }
     }
-    let svc = makeKafkaSource('asource', 'bootstrap:9092', 'atopic', destination)
+    let svc = new KafkaSource('asource', 'bootstrap:9092', 'atopic', destination)
     let yaml = svc.asYAML()
 
     assert.deepEqual(yaml, `apiVersion: sources.knative.dev/v1beta1

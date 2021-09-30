@@ -6,7 +6,7 @@ import mlog from 'mocha-logger'
 
 const cp = promisify(e)
 
-export default async function exec(cmd): Promise<string> {
+export async function exec(cmd): Promise<string> {
   if (config.get<ILoggingConfig>('logging')?.showCommands)
     mlog.log(cmd)
 

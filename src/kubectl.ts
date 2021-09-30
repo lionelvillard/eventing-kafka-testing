@@ -1,4 +1,4 @@
-import exec from './cp.js'
+import { exec } from './cp.js'
 import tmp from 'tmp-promise'
 import fs from 'fs/promises'
 import { Context } from './context.js'
@@ -23,5 +23,4 @@ export async function apply(context: Context, yaml: string ): Promise<string> {
 
 export async function get(context: Context, args: string) {
   return await exec(`kubectl get ${args}`)
-
 }

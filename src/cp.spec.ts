@@ -1,5 +1,5 @@
 import 'mocha'
-import exec from './cp.js'
+import { exec } from './cp.js'
 import { expect } from 'chai'
 
 describe('async exec', () => {
